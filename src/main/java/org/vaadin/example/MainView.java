@@ -10,11 +10,6 @@ import com.vaadin.componentfactory.maps.model.Series;
 import com.vaadin.componentfactory.maps.model.Tooltip;
 import com.vaadin.componentfactory.maps.model.style.FontWeight;
 import com.vaadin.componentfactory.maps.model.style.SolidColor;
-import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.ChartType;
-import com.vaadin.flow.component.charts.model.DataSeries;
-import com.vaadin.flow.component.charts.model.DataSeriesItem;
-import com.vaadin.flow.component.charts.model.PlotOptionsPie;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -50,39 +45,6 @@ public class MainView extends VerticalLayout {
      */
     public MainView() {
         add(createMap());
-        add(createChart());
-    }
-
-    private Chart createChart() {
-        Chart chart = new Chart(ChartType.PIE);
-
-        com.vaadin.flow.component.charts.model.Configuration conf = chart.getConfiguration();
-
-        conf.setTitle("Browser market shares in January, 2018");
-
-        PlotOptionsPie plotOptions = new PlotOptionsPie();
-        plotOptions.setAllowPointSelect(true);
-        plotOptions.setCursor(com.vaadin.flow.component.charts.model.Cursor.POINTER);
-        plotOptions.setShowInLegend(true);
-        conf.setPlotOptions(plotOptions);
-
-        DataSeries series = new DataSeries();
-        DataSeriesItem chrome = new DataSeriesItem("Chrome", 61.41);
-        chrome.setSliced(true);
-        chrome.setSelected(true);
-        series.add(chrome);
-        series.add(new DataSeriesItem("Internet Explorer", 11.84));
-        series.add(new DataSeriesItem("Firefox", 10.85));
-        series.add(new DataSeriesItem("Edge", 4.67));
-        series.add(new DataSeriesItem("Safari", 4.18));
-        series.add(new DataSeriesItem("Sogou Explorer", 1.64));
-        series.add(new DataSeriesItem("Opera", 6.2));
-        series.add(new DataSeriesItem("QQ", 1.2));
-        series.add(new DataSeriesItem("Others", 2.61));
-        conf.setSeries(series);
-        chart.setVisibilityTogglingDisabled(true);
-
-        return chart;
     }
 
     private Map createMap() {
